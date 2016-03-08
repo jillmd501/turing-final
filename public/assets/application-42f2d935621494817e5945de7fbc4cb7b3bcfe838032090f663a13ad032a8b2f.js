@@ -12340,6 +12340,21 @@ return jQuery;
   };
 
 }).call(this);
+$(document).ready(function(){
+  searchIdeas();
+});
+function searchIdeas(){
+  $("#search-text").keyup(function(){
+		var filter = $(this).val();
+		$("#link-index").children().each(function(){
+			if ($(this).children('.link-title').text().search(new RegExp(filter, "i")) < 0) {
+				$(this).fadeOut();
+			} else {
+				$(this).show();
+			}
+		});
+	});
+};
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //
