@@ -1,0 +1,34 @@
+<div class="container">
+<h2 class="center">Your Links</h3><br>
+
+<h4 class="center">Add New Link</h4>
+    <%= form_for Link.new, url: links_path do |f| %>
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+      <%= f.label :url %>
+      <%= f.text_field :url %>
+      <%= f.submit "Add Link", class: "btn" %>
+     <% end %>
+     <br><br><br><br>
+ <table class="centered highlight">
+     <thead>
+       <tr>
+         <th>Title</th>
+         <th>Link</th>
+         <th>Edit</th>
+         <th>Read?</th>
+       </tr>
+     </thead>
+     <tbody id="link-index">
+       <% @links.each do |link| %>
+       <tr id="link-<%=link.id%>">
+         <th class="center link-title"><%= link.title %></th>
+         <th class="center"> <a href="<%=link.url%>">Link</a></th>
+         <th class="center"> <a href="<%=edit_link_path(link)%>">Edit</a></th>
+         <th class="center read-status" id="<%=link.id%>-edit-read"><%= link.read.to_s %></th>
+       </tr>
+       <% end %>
+     </tbody>
+   </table>
+
+ </div>
